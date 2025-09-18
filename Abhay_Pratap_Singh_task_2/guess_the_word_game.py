@@ -10,16 +10,20 @@ for word in comp:
         progress.append(i)
 
 def trackProgress(letter, chances):
-    flag = 0
-    for i in range(0, length):
-        if letter in progress:
-            flag = 1
-            progress.remove(letter)
-            return -1
     if progress == []:
         print('Guess Correctly. You Won. Word was',comp[0])
         return True
-    print()
+    else:
+        if letter in progress:
+            print('Correct Guess.')
+        else:
+            chances -= 1
+            print('out')
+            print('Wrong Guess. Chances left: ',chances)
+        while letter in progress:
+            progress.remove(letter)
+        print()
+        return False, chances
             
 def showProgress(progress):
     for char in comp[0]:
@@ -32,16 +36,11 @@ def showProgress(progress):
 
 
 while chances > 0:
-    num = len(progress)
     letter = str(input('Guess a character: '))
-    isWon = trackProgress(letter, chances)
+    isWon, chances = trackProgress(letter, chances)
+    print(progress)
     if isWon == True:
         break
-    elif isWon == -1:
-        print('Correct Guess. Chances left: ',chances)
-    else:
-        print('Wrong Guess. Chances left: ',chances)
-        chances -= 1
     showProgress(progress)
     print()
 
