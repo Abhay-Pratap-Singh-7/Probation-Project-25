@@ -38,11 +38,7 @@ def showProgress(progress):
 while chances > 0:
     letter = str(input('Guess a character: '))
     isWon, chances = trackProgress(letter, chances)
-    print(progress)
     if isWon == True:
         break
     showProgress(progress)
     print()
-
-
-
