@@ -9,6 +9,10 @@ num = pd.Series(r.choices(arr, k=10), index={1,2,3,4,5,6,7,8,9,10})
 # 2
 print(num)
 print()
+
+print(num.head(5))
+print()
+
 print(num[:5])
 print()
 print(num[5:])

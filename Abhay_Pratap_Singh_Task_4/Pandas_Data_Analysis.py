@@ -27,13 +27,12 @@ print()
 print('English average: ',english_avg)
 print()
 
-highest = np.array(np.where((df['English']+df['Maths']+df['Science']) == max(df['English']+df['Maths']+df['Science'])))
-print('Who got Highest marks: ',df.iloc[highest[0][0],0])
-print()
-
-df['Total'] = df['English'] + df['Maths'] + df['Science']
+df['Total'] = df[["English", "Maths","Science"]].sum(axis=1)
 print(df)
 print()
+
+highest = df.loc[df['Total'].idxmax(), 'Name']
+print(highest)
 
 df['Result'] = np.where(df['Total'] > 150 , 'Pass', 'Fail')
 print(df)
